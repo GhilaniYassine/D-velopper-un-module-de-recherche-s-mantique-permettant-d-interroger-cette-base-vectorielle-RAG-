@@ -1,0 +1,50 @@
+Ascorbic Acid (Vitamin C) - Bread Improver
+
+Ascorbic acid (L-ascorbic acid, vitamin C) is an oxidizing agent used in bread making to improve dough handling properties, crumb structure, and fermentation kinetics. It acts as a dough conditioner through oxidation-reduction reactions.
+
+Recommended Dosage:
+- Bread production: 50-200 ppm (0.005-0.02% w/w)
+- Standard practice: 50-100 ppm for optimal effect
+- Weak flour compensation: 100-200 ppm
+- Industrial sandwich bread: 50-75 ppm
+- Artisan bread: 25-50 ppm
+
+Mechanisms of Action:
+- Strengthens gluten network through disulfide bond formation
+- Increases dough elasticity and gas retention capacity
+- Accelerates dough fermentation
+- Improves crumb uniformity and fineness
+- Reduces dough extensibility (counterbalance to enzymes)
+- Enhances final bread volume and symmetry
+
+Quality Improvements Observed:
+- Better gas-holding capacity of dough
+- More uniform crumb structure
+- Improved bread crumb color (whiter appearance)
+- Enhanced shelf-life through moisture stability
+- Reduced dough mixing time requirements
+- Better dough machinability
+
+Optimal Conditions:
+- pH range: 4.5-6.5 (optimal around 5.0-5.5)
+- Temperature: Most effective at fermentation temperatures (25-28°C)
+- Redox balance: Works best with oxidizing enzyme systems
+
+Interactions with Other Improvers:
+- Synergistic with alpha-amylase and xylanase
+- Balances the dough-relaxing effect of enzymes
+- Compatible with sodium stearoyl-2-lactylate (SSL)
+- May reduce effectiveness if combined with reducing agents
+- Effective in system with lipases
+
+Regulatory Notes:
+- GRAS status in USA (Generally Recognized As Safe)
+- Permitted in most countries under food additive regulations
+- Dissolves readily in water for pre-mixing
+- Sensitive to pH extremes (degrades in alkaline solutions)
+
+Application Method:
+- Mix with flour before hydration for even distribution
+- Use aqueous solutions at 1-2% concentration for large batches
+- Pre-blend to prevent localized oxidation
+- Storage: Keep in cool, dry environment (ascorbic acid is moisture-sensitive)

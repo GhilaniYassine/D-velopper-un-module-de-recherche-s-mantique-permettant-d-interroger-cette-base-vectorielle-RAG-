@@ -1,0 +1,31 @@
+Alpha-Amylase (AMY1) - Baking Enzyme
+
+Alpha-amylase is an endoglycosidase enzyme that cleaves α-1,4-glycosidic bonds in starch molecules. In bakery applications, alpha-amylase is used to improve dough extensibility, fermentation rate, and final bread quality.
+
+Recommended Dosage:
+- Bread applications: 50-100 ppm (parts per million) of enzyme activity units
+- High-volume production: 100-200 ppm for extended dough life
+- Weak flour compensation: 150-300 ppm
+
+Functions:
+- Reduces starch viscosity in dough
+- Increases fermentation substrate (maltose) for yeast
+- Improves crumb structure and elasticity
+- Extends dough development time
+- Enhances bread softness and shelf-life
+
+Temperature Stability:
+- Optimal activity: 50-65°C
+- Inactivation: Above 80°C for most sources
+
+Interactions:
+- Works synergistically with xylanase
+- Compatible with ascorbic acid
+- May reduce dough stability if overdosed
+- Sensitive to pH variations (optimal: 4.5-5.5)
+
+Application Notes:
+- Pre-blend with flour before hydration
+- Monitor fermentation time due to increased sugar availability
+- Particularly effective in weak flour systems
+- Results in better volume and softer crumb in sandwich bread

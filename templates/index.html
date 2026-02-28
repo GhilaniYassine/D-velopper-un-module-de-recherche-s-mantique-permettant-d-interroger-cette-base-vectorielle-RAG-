@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bakery Semantic Search</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0f172a;
+        --card: #111827;
+        --accent: #f97316;
+        --accent-soft: rgba(249, 115, 22, 0.12);
+        --text: #e5e7eb;
+        --muted: #9ca3af;
+        --border: #1f2937;
+        --danger: #f87171;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+          sans-serif;
+        background: radial-gradient(circle at top, #1f2937 0, #020617 45%);
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+
+      .shell {
+        width: 100%;
+        max-width: 960px;
+      }
+
+      .card {
+        background: linear-gradient(145deg, #020617, #020617);
+        border-radius: 18px;
+        padding: 22px 24px 20px;
+        border: 1px solid rgba(148, 163, 184, 0.16);
+        box-shadow: 0 22px 60px rgba(15, 23, 42, 0.9);
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 18px;
+        gap: 12px;
+      }
+
+      .title {
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .pill {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        background: rgba(15, 118, 110, 0.12);
+        color: #6ee7b7;
+        padding: 3px 9px;
+        border-radius: 999px;
+        border: 1px solid rgba(45, 212, 191, 0.35);
+      }
+
+      .subtitle {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+
+      textarea {
+        width: 100%;
+        min-height: 88px;
+        resize: vertical;
+        padding: 10px 11px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: radial-gradient(circle at top left, #020617 0, #020617 40%);
+        color: var(--text);
+        font-size: 13px;
+        line-height: 1.4;
+      }
+
+      textarea:focus-visible {
+        outline: 2px solid rgba(249, 115, 22, 0.6);
+        outline-offset: 1px;
+      }
+
+      .controls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .hint {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      button {
+        border: none;
+        border-radius: 999px;
+        padding: 7px 16px;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        background: linear-gradient(135deg, #f97316, #facc15);
+        color: #020617;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        box-shadow: 0 12px 30px rgba(249, 115, 22, 0.35);
+      }
+
+      button:disabled {
+        opacity: 0.6;
+        cursor: default;
+        box-shadow: none;
+      }
+
+      .results {
+        margin-top: 4px;
+        border-top: 1px solid rgba(31, 41, 55, 0.8);
+        padding-top: 10px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .result {
+        border-radius: 10px;
+        padding: 9px 11px;
+        background: radial-gradient(
+            circle at top left,
+            var(--accent-soft),
+            transparent 60%
+          ),
+          #020617;
+        border: 1px solid rgba(31, 41, 55, 0.9);
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 8px;
+        align-items: flex-start;
+      }
+
+      .result-rank {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--muted);
+        margin-bottom: 4px;
+      }
+
+      .result-text {
+        font-size: 13px;
+        color: var(--text);
+      }
+
+      .score-pill {
+        font-size: 13px;
+        font-variant-numeric: tabular-nums;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: rgba(15, 23, 42, 0.9);
+        border: 1px solid rgba(148, 163, 184, 0.35);
+        color: #fbbf24;
+        white-space: nowrap;
+      }
+
+      .status {
+        margin-top: 4px;
+        font-size: 12px;
+        color: var(--muted);
+        min-height: 1.1em;
+      }
+
+      .status.error {
+        color: var(--danger);
+      }
+
+      .reformulated-section {
+        margin-top: 20px;
+        padding: 16px;
+        background: linear-gradient(135deg, rgba(15, 118, 110, 0.08), rgba(72, 187, 120, 0.08));
+        border: 1px solid rgba(72, 187, 120, 0.25);
+        border-radius: 10px;
+      }
+
+      .reformulated-title {
+        font-size: 14px;
+        font-weight: 600;
+        color: #6ee7b7;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .reformulated-content {
+        font-size: 13px;
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      .reformulated-content h2 {
+        font-size: 14px;
+        color: #86efac;
+        margin-top: 12px;
+        margin-bottom: 8px;
+      }
+
+      .reformulated-content h3 {
+        font-size: 13px;
+        color: #6ee7b7;
+        margin-top: 10px;
+        margin-bottom: 6px;
+      }
+
+      .reformulated-content ul {
+        margin: 8px 0;
+        padding-left: 20px;
+      }
+
+      .reformulated-content li {
+        margin: 4px 0;
+      }
+
+      .reformulated-content strong {
+        color: #fbbf24;
+      }
+
+      @media (max-width: 640px) {
+        .card {
+          padding: 18px 16px 16px;
+        }
+
+        .card-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .controls {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        button {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="title">
+              Bakery &amp; Pastry Semantic Search
+              <span class="pill">retrieval • top 3</span>
+            </div>
+            <p class="subtitle">
+              Ask about enzyme, oxidizing agents or improver usage. The engine
+              will return the 3 most relevant technical fragments with a
+              similarity score.
+            </p>
+          </div>
+        </div>
+
+        <form id="search-form">
+          <textarea
+            id="question"
+            name="question"
+            placeholder="Ex&nbsp;: Améliorant de panification : quelles sont les quantités recommandées d’alpha-amylase, xylanase et d’Acide ascorbique ?"
+            required
+          ></textarea>
+          <div class="controls">
+            <div class="hint">
+              The model uses embeddings from
+              <strong>all‑MiniLM‑L6‑v2</strong> and cosine similarity.
+            </div>
+            <button type="submit">
+              <span id="btn-label">Search</span>
+            </button>
+          </div>
+        </form>
+
+        <div id="status" class="status"></div>
+        <div id="results" class="results"></div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/marked@11.1.0/marked.min.js"></script>
+    <script>
+      const form = document.getElementById("search-form");
+      const questionInput = document.getElementById("question");
+      const resultsEl = document.getElementById("results");
+      const statusEl = document.getElementById("status");
+      const button = form.querySelector("button");
+      const btnLabel = document.getElementById("btn-label");
+
+      function renderResults(data) {
+        resultsEl.innerHTML = "";
+        
+        // Display reformulated response if available
+        if (data.reformulated_response) {
+          const reformulatedDiv = document.createElement("div");
+          reformulatedDiv.className = "reformulated-section";
+          
+          const titleDiv = document.createElement("div");
+          titleDiv.className = "reformulated-title";
+          titleDiv.textContent = "✨ AI-Enhanced Response (Powered by Gemini)";
+          reformulatedDiv.appendChild(titleDiv);
+          
+          const contentDiv = document.createElement("div");
+          contentDiv.className = "reformulated-content";
+          
+          // Parse markdown if marked library is available
+          try {
+            if (typeof marked !== 'undefined' && marked.parse) {
+              contentDiv.innerHTML = marked.parse(data.reformulated_response);
+            } else {
+              contentDiv.textContent = data.reformulated_response;
+            }
+          } catch (e) {
+            console.error("Error parsing markdown:", e);
+            contentDiv.textContent = data.reformulated_response;
+          }
+          
+          reformulatedDiv.appendChild(contentDiv);
+          resultsEl.appendChild(reformulatedDiv);
+        }
+        
+        // Display raw search results
+        if (!data.results || data.results.length === 0) {
+          if (!data.reformulated_response) {
+            statusEl.textContent = "No results found.";
+          }
+          return;
+        }
+        
+        // Add separator if we have both response and results
+        if (data.reformulated_response) {
+          const separator = document.createElement("div");
+          separator.style.marginTop = "20px";
+          separator.style.paddingTop = "20px";
+          separator.style.borderTop = "1px solid rgba(148, 163, 184, 0.25)";
+          separator.style.fontSize = "12px";
+          separator.style.color = "var(--muted)";
+          separator.textContent = "Raw Search Results (Top 3 Matches)";
+          resultsEl.appendChild(separator);
+        }
+        
+        data.results.forEach((r, idx) => {
+          const scorePercent = (r.score * 100).toFixed(1);
+          const div = document.createElement("div");
+          div.className = "result";
+          div.innerHTML = `
+            <div>
+              <div class="result-rank">Result ${idx + 1}</div>
+              <div class="result-text">${escapeHtml(r.texte_fragment)}</div>
+            </div>
+            <div class="score-pill">${scorePercent}% match</div>
+          `;
+          resultsEl.appendChild(div);
+        });
+        statusEl.textContent = "";
+      }
+
+      function escapeHtml(str) {
+        return String(str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const question = questionInput.value.trim();
+        if (!question) return;
+
+        button.disabled = true;
+        btnLabel.textContent = "Searching…";
+        statusEl.classList.remove("error");
+        statusEl.textContent = "Enhancing query with AI… Computing embeddings and searching… Reformulating response…";
+
+        try {
+          const res = await fetch("/search", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ 
+              question,
+              use_gemini: true
+            }),
+          });
+
+          if (!res.ok) {
+            const err = await res.json().catch(() => ({}));
+            throw new Error(err.detail || "Search failed");
+          }
+
+          const data = await res.json();
+          renderResults(data);
+        } catch (err) {
+          resultsEl.innerHTML = "";
+          statusEl.classList.add("error");
+          statusEl.textContent = err.message || "Unexpected error.";
+        } finally {
+          button.disabled = false;
+          btnLabel.textContent = "Search";
+        }
+      });
+    </script>
+  </body>
+</html>
+

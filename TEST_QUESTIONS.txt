@@ -1,0 +1,56 @@
+TEST QUESTIONS FOR SEMANTIC SEARCH SYSTEM
+==========================================
+
+BASIC DOSAGE & APPLICATION QUESTIONS
+====================================
+1. What dosage for alpha-amylase in bread making?
+2. How much xylanase should I use in my dough?
+3. What's the recommended ppm for benzoyl peroxide?
+4. Ascorbic acid concentration for weak flour?
+5. Enzyme levels for high-volume production?
+
+TECHNICAL & SCIENTIFIC QUESTIONS
+=================================
+6. How do enzymes improve dough elasticity?
+7. What temperature inactivates alpha-amylase?
+8. Explain the enzymatic breakdown in bread fermentation
+9. What's the optimal pH for enzyme activity?
+10. How do hemicellulases affect crumb structure?
+
+COMPARATIVE QUESTIONS
+=====================
+11. What's the difference between xylanase and alpha-amylase?
+12. Compare ascorbic acid and benzoyl peroxide
+13. Which enzyme is better for weak flour?
+14. How do different enzymes interact in dough?
+15. What are the pros and cons of each additive?
+
+PROBLEM-SOLVING QUESTIONS
+==========================
+16. My bread crumb is too tight, what enzyme helps?
+17. How to reduce dough stickiness with enzymes?
+18. Improve bread volume and texture recommendations?
+19. Best enzyme combination for baguettes?
+20. Weak flour formulation strategy?
+
+SPECIFIC PROPERTY QUESTIONS
+============================
+21. What's alpha-amylase used for?
+22. Benefits of xylanase in bread?
+23. Why use benzoyl peroxide in flour?
+24. What does ascorbic acid do?
+25. Flour oxidation and whitening agents?
+
+CLI TESTING COMMANDS
+====================
+python3 -m app.main search -q "What dosage for alpha-amylase in bread making?"
+python3 -m app.main search -q "How do enzymes improve dough elasticity?"
+python3 -m app.main search -q "Best enzyme combination for baguettes?" --no-gemini
+
+API TESTING COMMANDS (curl)
+============================
+curl -X POST http://localhost:8000/search -H "Content-Type: application/json" -d '{"question":"What dosage for alpha-amylase?","use_gemini":true}'
+
+curl -X POST http://localhost:8000/search -H "Content-Type: application/json" -d '{"question":"Enzyme interactions in dough?","use_gemini":true}'
+
+curl -X POST http://localhost:8000/search -H "Content-Type: application/json" -d '{"question":"What dosage for alpha-amylase?","use_gemini":false}'
