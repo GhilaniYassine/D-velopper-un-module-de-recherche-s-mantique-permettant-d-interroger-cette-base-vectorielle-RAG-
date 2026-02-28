@@ -28,7 +28,7 @@ api-key:
 	@echo "🔑 Gemini API Key Configuration"
 	@echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 	@echo ""
-	@read -p "Enter your Gemini API key (or press Enter to skip): " api_key; \
+	@read -p "Enter your Gemini API key in order to  enhance retrieval quality through intelligent query rewriting before embedding generation (or press Enter to skip): " api_key; \
 	if [ -n "$$api_key" ]; then \
 		echo "GEMINI_API_KEY=$$api_key" > .env; \
 		echo ""; \
