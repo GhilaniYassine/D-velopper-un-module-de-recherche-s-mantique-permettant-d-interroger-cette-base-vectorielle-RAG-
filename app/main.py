@@ -8,6 +8,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, Field
+import os
 
 from .database import DatabaseError, get_db
 from .search_service import SearchResult, search_service
@@ -21,9 +22,12 @@ app = FastAPI(
     description="Semantic search with document ingestion and Gemini-powered query optimization and response reformulation.",
     version="2.0.0",
 )
+STATIC_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "static")
+os.makedirs(STATIC_DIR, exist_ok=True)
 
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
 
 class SearchRequest(BaseModel):
