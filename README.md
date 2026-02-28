@@ -247,37 +247,6 @@ xylanase et d'Acide ascorbique ?"
 
 ---
 
-## 🐳 Docker Deployment (Recommended for Production)
-
-The project is fully containerized with Docker and ready for easy deployment.
-
-### **Quick Start with Docker**
-
-**Option 1: Using the automated script (easiest)**
-```bash
-bash docker-start.sh up
-```
-
-**Option 2: Using Docker Compose**
-```bash
-cp .env.docker .env
-# Edit .env and add your Gemini API key
-docker compose up -d
-```
-
-**Option 3: Production setup with Nginx**
-```bash
-cp .env.docker .env
-docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
-```
-
-**Access the application**: http://localhost:8000
-
-📖 **Documentation**:
-- [DOCKER_DEPLOYMENT.md](DOCKER_DEPLOYMENT.md) - Complete deployment guide
-- [DOCKER_FILES.md](DOCKER_FILES.md) - Files overview and scenarios
-
----
 
 ## 📦 Setup & Installation (Local Development)
 
@@ -547,20 +516,6 @@ curl -X POST http://localhost:8000/ingest \
 ```bash
 curl http://localhost:8000/status
 ```
-
----
-
-## 📝 Agent.md Requirements Met
-
-✅ Embedding model: `all-MiniLM-L6-v2` (384 dimensions)  
-✅ Similarity: Cosine similarity  
-✅ Top K: 3 results  
-✅ Clean modular architecture  
-✅ Production-ready code  
-✅ Error handling + logging  
-✅ CLI interface + REST API  
-✅ Config management with .env  
-✅ Document ingestion pipeline  
 
 ---
 
