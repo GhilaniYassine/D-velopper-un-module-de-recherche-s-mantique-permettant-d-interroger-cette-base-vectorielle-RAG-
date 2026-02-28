@@ -1,3 +1,19 @@
+
+## 🚀 Quick Start with Makefile (Recommended)
+
+You can run, set up, and configure the project easily using the provided **Makefile**:
+
+```bash
+make setup   # Installs dependencies and prompts for your Gemini API key
+make run     # Starts the FastAPI server at http://localhost:8000
+```
+
+**Why set the Gemini API key?**
+
+For the best semantic retrieval results, including advanced query rewriting and response reformulation, you should provide your Gemini API key when prompted during `make setup` (or by running `make api-key`). This enables the system to use Google Gemini for smarter, more accurate answers.
+
+If you skip the API key, the system will still work, but without enhanced LLM-powered query rewriting.
+
 # 🧠 Semantic Search Module with ChromaDB - RAG System
 
 **Production-ready semantic search and document ingestion system** using ChromaDB vector store, sentence transformers, and FastAPI.
@@ -231,7 +247,39 @@ xylanase et d'Acide ascorbique ?"
 
 ---
 
+## 🐳 Docker Deployment (Recommended for Production)
 
+The project is fully containerized with Docker and ready for easy deployment.
+
+### **Quick Start with Docker**
+
+**Option 1: Using the automated script (easiest)**
+```bash
+bash docker-start.sh up
+```
+
+**Option 2: Using Docker Compose**
+```bash
+cp .env.docker .env
+# Edit .env and add your Gemini API key
+docker compose up -d
+```
+
+**Option 3: Production setup with Nginx**
+```bash
+cp .env.docker .env
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+```
+
+**Access the application**: http://localhost:8000
+
+📖 **Documentation**:
+- [DOCKER_DEPLOYMENT.md](DOCKER_DEPLOYMENT.md) - Complete deployment guide
+- [DOCKER_FILES.md](DOCKER_FILES.md) - Files overview and scenarios
+
+---
+
+## 📦 Setup & Installation (Local Development)
 
 ### 1. Create Virtual Environment (Already Done)
 The virtual environment is already set up in `env/` folder. Just activate it:
